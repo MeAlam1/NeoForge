@@ -406,6 +406,37 @@ public abstract class PlayerEvent extends LivingEvent {
         }
     }
 
+    public static class ItemSmithingEvent extends PlayerEvent {
+        private final ItemStack template;
+        private final ItemStack mainItem;
+        private final ItemStack addition;
+        private final ItemStack result;
+
+        public ItemSmithingEvent(Player player, ItemStack template, ItemStack mainItem, ItemStack addition, ItemStack result) {
+            super(player);
+            this.template = template;
+            this.mainItem = mainItem;
+            this.addition = addition;
+            this.result = result;
+        }
+
+        public ItemStack getTemplate() {
+            return this.template;
+        }
+
+        public ItemStack getMainItem() {
+            return this.mainItem;
+        }
+
+        public ItemStack getAddition() {
+            return this.addition;
+        }
+
+        public ItemStack getResult() {
+            return this.result;
+        }
+    }
+
     public static class ItemSmeltedEvent extends PlayerEvent {
         private final ItemStack smelting;
         private final int amountRemoved;

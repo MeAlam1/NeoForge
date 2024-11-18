@@ -912,6 +912,10 @@ public class EventHooks {
         NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmeltedEvent(player, smelted, amountRemoved));
     }
 
+    public static void firePlayerSmithingEvent(Player player, ItemStack template, ItemStack mainItem, ItemStack addition, ItemStack result) {
+        NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmithingEvent(player, template, mainItem, addition, result));
+    }
+
     /**
      * Called by {@link Gui.HeartType#forPlayer} to allow for modification of the displayed heart type in the
      * health bar.
