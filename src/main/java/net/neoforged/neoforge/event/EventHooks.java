@@ -904,14 +904,37 @@ public class EventHooks {
         NeoForge.EVENT_BUS.post(new PlayerEvent.PlayerRespawnEvent(player, fromEndFight));
     }
 
+    /**
+     * Called by {@link net.minecraft.world.inventory.ResultSlot#checkTakeAchievements} after the player takes an item from the result slot in the crafting grid.
+     *
+     * @param player The player who took the item.
+     * @param result The item that was crafted.
+     * @param craftMatrix The crafting matrix that was used for the recipe.
+     */
     public static void firePlayerCraftingEvent(Player player, ItemStack result, Container craftMatrix) {
         NeoForge.EVENT_BUS.post(new PlayerEvent.ItemCraftedEvent(player, result, craftMatrix));
     }
 
+    /**
+     * Called by {@link net.minecraft.world.inventory.FurnaceResultSlot#checkTakeAchievements} after the player takes an item from the furnace output slot.
+     *
+     * @param player The player who took the item.
+     * @param result The item that was smelted.
+     * @param amountRemoved The amount of items removed from the output slot.
+     */
     public static void firePlayerSmeltedEvent(Player player, ItemStack result, int amountRemoved) {
         NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmeltedEvent(player, result, amountRemoved));
     }
 
+    /**
+     * Called by {@link net.minecraft.world.inventory.SmithingMenu#onTake} after the player takes an item from the output slot in the smithing table.
+     *
+     * @param player The player who took the item.
+     * @param template The template item used in the smithing recipe. (ex. Smithing template)
+     * @param mainItem The main item used in the smithing recipe. (ex. Diamond sword)
+     * @param addition The addition item used in the smithing recipe. (ex. Netherite ingot)
+     * @param result The item that was smithed.
+     */
     public static void firePlayerSmithingEvent(Player player, ItemStack template, ItemStack mainItem, ItemStack addition, ItemStack result) {
         NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmithingEvent(player, template, mainItem, addition, result));
     }
