@@ -387,25 +387,55 @@ public abstract class PlayerEvent extends LivingEvent {
         }
     }
 
+    /**
+     * An event triggered when a player crafts an item.
+     * <p>
+     * This event is fired at the following stages:
+     * <ul>
+     * <li>After clicking the craft button in the crafting interface.</li>
+     * <li>Before awarding the used recipe and resizing the stacks.</li>
+     * </ul>
+     * <p>
+     * The event is fired via {@link EventHooks#firePlayerCraftingEvent(Player, ItemStack, Container)}<br>
+     * and is posted to the {@link NeoForge#EVENT_BUS}.
+     */
     public static class ItemCraftedEvent extends PlayerEvent {
-        private final ItemStack crafting;
+        private final ItemStack result;
         private final Container craftMatrix;
 
-        public ItemCraftedEvent(Player player, ItemStack crafting, Container craftMatrix) {
+        public ItemCraftedEvent(Player player, ItemStack result, Container craftMatrix) {
             super(player);
-            this.crafting = crafting;
+            this.result = result;
             this.craftMatrix = craftMatrix;
         }
 
+        /**
+         * {@return the item that was crafted (ex. Diamond sword)}
+         */
         public ItemStack getCrafting() {
-            return this.crafting;
+            return this.result;
         }
 
+        /**
+         * {@return the crafting matrix used to craft the item (ex. 2x diamond, 1x stick)}
+         */
         public Container getInventory() {
             return this.craftMatrix;
         }
     }
 
+    /**
+     * An event triggered when a player smiths an item.
+     * <p>
+     * This event is fired at the following stages:
+     * <ul>
+     * <li>After awarding the used recipe.</li>
+     * <li>Before resizing the stacks.</li>
+     * </ul>
+     * <p>
+     * The event is fired via {@link EventHooks#firePlayerSmithingEvent(Player, ItemStack, ItemStack, ItemStack, ItemStack)} <br>
+     * and is posted to the {@link NeoForge#EVENT_BUS}.
+     */
     public static class ItemSmithingEvent extends PlayerEvent {
         private final ItemStack template;
         private final ItemStack mainItem;
@@ -420,37 +450,67 @@ public abstract class PlayerEvent extends LivingEvent {
             this.result = result;
         }
 
+        /**
+         * {@return the template item used for smithing (ex. Smithing template)}
+         */
         public ItemStack getTemplate() {
             return this.template;
         }
 
+        /**
+         * {@return the main item used for smithing (ex. Diamond sword)}
+         */
         public ItemStack getMainItem() {
             return this.mainItem;
         }
 
+        /**
+         * {@return the item that is used as support to the item that is being smithed (ex. Netherite ingot}
+         */
         public ItemStack getAddition() {
             return this.addition;
         }
 
+        /**
+         * {@return the result of the smithing in the final slot (ex. Netherite sword)}
+         */
         public ItemStack getResult() {
             return this.result;
         }
     }
 
+    /**
+     * An event triggered when a player smelts an item.
+     * <p>
+     * This event is fired after:
+     * <ul>
+     * <li>Awarding the used recipe.</li>
+     * <li>Resizing the item stacks.</li>
+     * </ul>
+     * <p>
+     * The event is fired via {@link EventHooks#firePlayerSmeltedEvent(Player, ItemStack, int)} <br>
+     * and is posted to the {@link NeoForge#EVENT_BUS}.
+     */
     public static class ItemSmeltedEvent extends PlayerEvent {
-        private final ItemStack smelting;
+        private final ItemStack result;
         private final int amountRemoved;
 
-        public ItemSmeltedEvent(Player player, ItemStack crafting, int amountRemoved) {
+        public ItemSmeltedEvent(Player player, ItemStack result, int amountRemoved) {
             super(player);
-            this.smelting = crafting;
+            this.result = result;
             this.amountRemoved = amountRemoved;
         }
 
+        /**
+         * {@return the item result after smelting (ex. Iron ingot)}
+         */
         public ItemStack getSmelting() {
-            return this.smelting;
+            return this.result;
         }
 
+        /**
+         * {@return the amount of items that were removed from the inventory (ex. 1)}
+         */
         public int getAmountRemoved() {
             return this.amountRemoved;
         }

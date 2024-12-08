@@ -904,12 +904,12 @@ public class EventHooks {
         NeoForge.EVENT_BUS.post(new PlayerEvent.PlayerRespawnEvent(player, fromEndFight));
     }
 
-    public static void firePlayerCraftingEvent(Player player, ItemStack crafted, Container craftMatrix) {
-        NeoForge.EVENT_BUS.post(new PlayerEvent.ItemCraftedEvent(player, crafted, craftMatrix));
+    public static void firePlayerCraftingEvent(Player player, ItemStack result, Container craftMatrix) {
+        NeoForge.EVENT_BUS.post(new PlayerEvent.ItemCraftedEvent(player, result, craftMatrix));
     }
 
-    public static void firePlayerSmeltedEvent(Player player, ItemStack smelted, int amountRemoved) {
-        NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmeltedEvent(player, smelted, amountRemoved));
+    public static void firePlayerSmeltedEvent(Player player, ItemStack result, int amountRemoved) {
+        NeoForge.EVENT_BUS.post(new PlayerEvent.ItemSmeltedEvent(player, result, amountRemoved));
     }
 
     public static void firePlayerSmithingEvent(Player player, ItemStack template, ItemStack mainItem, ItemStack addition, ItemStack result) {
