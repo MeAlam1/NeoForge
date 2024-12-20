@@ -49,7 +49,6 @@ import net.minecraft.client.gui.screens.inventory.EffectsInInventory;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -114,7 +113,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.GameType;
@@ -300,10 +298,6 @@ public class ClientHooks {
         ModLoader.postEvent(new RegisterColorHandlersEvent.Block(blockColors));
     }
 
-    public static Model getArmorModel(ItemStack itemStack, EquipmentClientInfo.LayerType layerType, Model _default) {
-        return IClientItemExtensions.of(itemStack).getGenericArmorModel(itemStack, layerType, _default);
-    }
-
     /** Copies humanoid model properties from the original model to another, used for armor models */
     @SuppressWarnings("unchecked")
     public static <T extends HumanoidRenderState> void copyModelProperties(HumanoidModel<T> original, HumanoidModel<?> replacement) {
@@ -460,11 +454,6 @@ public class ClientHooks {
 
     public static void onModelBake(ModelManager modelManager, ModelBakery.BakingResult bakingResult, ModelBakery modelBakery) {
         ModLoader.postEvent(new ModelEvent.BakingCompleted(modelManager, bakingResult, modelBakery));
-    }
-
-    public static BakedModel handleCameraTransforms(PoseStack poseStack, @Nullable BakedModel model, ItemDisplayContext cameraTransformType, boolean applyLeftHandTransform) {
-        model = model.applyTransform(cameraTransformType, poseStack, applyLeftHandTransform);
-        return model;
     }
 
     @SuppressWarnings("deprecation")
