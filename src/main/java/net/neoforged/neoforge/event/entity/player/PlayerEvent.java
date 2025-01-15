@@ -410,14 +410,14 @@ public abstract class PlayerEvent extends LivingEvent {
         }
 
         /**
-         * {@return the item that was crafted (ex. Diamond sword)}
+         * @return the item that was crafted (ex. Diamond sword)
          */
         public ItemStack getCrafting() {
             return this.result;
         }
 
         /**
-         * {@return the crafting matrix used to craft the item (ex. 2x diamond, 1x stick)}
+         * @return the crafting matrix used to craft the item (ex. 2x diamond, 1x stick)
          */
         public Container getInventory() {
             return this.craftMatrix;
@@ -451,28 +451,28 @@ public abstract class PlayerEvent extends LivingEvent {
         }
 
         /**
-         * {@return the template item used for smithing (ex. Smithing template)}
+         * @return the template item used for smithing (ex. Smithing template)
          */
         public ItemStack getTemplate() {
             return this.template;
         }
 
         /**
-         * {@return the main item used for smithing (ex. Diamond sword)}
+         * @return the main item used for smithing (ex. Diamond sword)
          */
         public ItemStack getMainItem() {
             return this.mainItem;
         }
 
         /**
-         * {@return the item that is used as support to the item that is being smithed (ex. Netherite ingot}
+         * @return the item that is used as support to the item that is being smithed (ex. Netherite ingot)
          */
         public ItemStack getAddition() {
             return this.addition;
         }
 
         /**
-         * {@return the result of the smithing in the final slot (ex. Netherite sword)}
+         * @return the result of the smithing in the final slot (ex. Netherite sword)
          */
         public ItemStack getResult() {
             return this.result;
@@ -502,14 +502,14 @@ public abstract class PlayerEvent extends LivingEvent {
         }
 
         /**
-         * {@return the item result after smelting (ex. Iron ingot)}
+         * @return the item result after smelting (ex. Iron ingot)
          */
         public ItemStack getSmelting() {
             return this.result;
         }
 
         /**
-         * {@return the amount of items that were removed from the inventory (ex. 1)}
+         * @return the amount of items that were removed from the inventory (ex. 1)
          */
         public int getAmountRemoved() {
             return this.amountRemoved;
